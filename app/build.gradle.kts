@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.learn.movieapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.learn.movieapp"
