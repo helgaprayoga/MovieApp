@@ -27,7 +27,7 @@ fun HomeScreen(navController: NavController) {
                 title = {
                     Text(text = "MovieApp")
                 },
-                colors = TopAppBarDefaults.topAppBarColors(Color.Magenta)
+                colors = TopAppBarDefaults.topAppBarColors(Color.LightGray)
             )
         }
     ) { innerPadding ->
