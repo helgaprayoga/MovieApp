@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.learn.movieapp.navigation.MovieNavigation
 import com.learn.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,55 +44,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyApp { paddingValues ->
-                MainContent(modifier = Modifier.padding(paddingValues))
+            MyApp {
+                MovieNavigation()
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyApp(content: @Composable (PaddingValues) -> Unit) {
+fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(text = "MovieApp")
-                            },
-                    colors = TopAppBarDefaults.topAppBarColors(Color.Magenta)
-                )
-            }
-        ) { innerPadding ->
-            content(innerPadding)
-        }
-    }
-}
-
-@Composable
-fun MainContent(
-    modifier: Modifier = Modifier,
-    movieList: List<String> = listOf(
-        "Avatar",
-        "Jumbo",
-        "Sore",
-        "Final Destination",
-        "Agak Laen",
-        "Komang",
-        "Perayaan Mati Rasa"
-    )
-) {
-    Column(
-        modifier = modifier.padding(12.dp)
-    ) {
-        LazyColumn {
-            items(items = movieList) {
-                MovieRow(movie = it) { movie ->
-                    Log.d("TAG", "MainContent: $movie")
-                }
-            }
-        }
+        content()
     }
 }
 
@@ -133,7 +96,7 @@ fun MovieRow(
 @Preview(showBackground = true)
 @Composable
 fun AppPreview() {
-    MyApp { paddingValues ->
-        MainContent(modifier = Modifier.padding(paddingValues))
+    MyApp {
+        MovieNavigation()
     }
 }
